@@ -27,6 +27,7 @@ import sunjiao.nominatim.Address
 class CNLocalizer 
     (private var address: Address)
 {
+    //藏南
     private val SOUTH_TIBET = {
         GeoPoint(29.449,97.4125)
         GeoPoint(29.449,91.439)
@@ -492,6 +493,7 @@ class CNLocalizer
         GeoPoint(27.738825,97.101285)
         GeoPoint(27.738825,97.4125)
     }
+    //楚木惹争议区
     private val CHUMAR ={
         GeoPoint(32.5942,78.6520)
         GeoPoint(32.5942,78.569383)
@@ -558,6 +560,7 @@ class CNLocalizer
         GeoPoint(32.635908,78.631319)
         GeoPoint(32.635908,78.6520)
     }
+    //斯诺乌山争议区
     private val SERUURRI ={
         GeoPoint(32.6576951, 78.6539554)
         GeoPoint(32.6586345, 78.6548567)
@@ -605,8 +608,68 @@ class CNLocalizer
         GeoPoint(32.7024139, 78.7447643)
         GeoPoint(32.6993442, 78.74264)
         GeoPoint(32.695747,  78.739516)
+        GeoPoint(32.6527,	78.739516)
+        GeoPoint(32.6527,	78.6539554)
     }
-
+    //桑、葱莎、波林三多地区
+    private val SANG_TSHONG_SA_PULAM_SUMDA = {
+        GeoPoint(31.115  ,79.41)
+        GeoPoint(31.075  ,79.415)
+        GeoPoint(31.07   ,79.39)
+        GeoPoint(31.055  ,79.385)
+        GeoPoint(31.055  ,79.375)
+        GeoPoint(31.04   ,79.37)
+        GeoPoint(31.03   ,79.355)
+        GeoPoint(31.025  ,79.32)
+        GeoPoint(31.015  ,79.31)
+        GeoPoint(31.00  ,79.315)
+        GeoPoint(31.00  ,79.33)
+        GeoPoint(30.96   ,79.325)
+        GeoPoint(30.97   ,79.29)
+        GeoPoint(30.95   ,79.255)
+        GeoPoint(30.955  ,79.22)
+        GeoPoint(30.965  ,79.21)
+        GeoPoint(30.98   ,79.215)
+        GeoPoint(30.99   ,79.205)
+        GeoPoint(31.005  ,79.205)
+        GeoPoint(31.02   ,79.18)
+        GeoPoint(31.02   ,79.17)
+        GeoPoint(31.00  ,79.15)
+        GeoPoint(31.005  ,79.125)
+        GeoPoint(30.995  ,79.11)
+        GeoPoint(30.995  ,79.09)
+        GeoPoint(31.005  ,79.09)
+        GeoPoint(31.01   ,79.075)
+        GeoPoint(31.035  ,79.055)
+        GeoPoint(31.045  ,79.025)
+        GeoPoint(31.04   ,79.01)
+        GeoPoint( 31.05  ,79.00	  )
+        GeoPoint(31.07   ,78.99)
+        GeoPoint(31.085  ,78.995)
+        GeoPoint(31.095  ,78.99)
+        GeoPoint( 31.1   ,79.00	  )
+        GeoPoint(31.11   ,78.995)
+        GeoPoint(31.115  ,79.005)
+        GeoPoint(31.135  ,79.005)
+        GeoPoint(31.14   ,78.99)
+        GeoPoint(31.165  ,78.995)
+        GeoPoint(31.175  ,78.99)
+        GeoPoint(31.185  ,78.96)
+        GeoPoint(31.195  ,78.96)
+        GeoPoint(31.205  ,78.945)
+        GeoPoint(31.215  ,78.95)
+        GeoPoint(31.22   ,78.935)
+        GeoPoint(31.215  ,78.93)
+        GeoPoint(31.25   ,78.92)
+        GeoPoint(31.26   ,78.895)
+        GeoPoint(31.27   ,78.885)
+        GeoPoint(31.285  ,78.885)
+        GeoPoint(31.6200,79.0688)
+    }
+    //乌热、然冲、拉不底地区,然冲的藏语名没找到，我宁愿用RANCHONG也不会用Silakang的
+    private val WUJE_RANCHONG_LAPTHAL = {
+        
+    }
     fun getLocalizedAddress(){
 
     }
