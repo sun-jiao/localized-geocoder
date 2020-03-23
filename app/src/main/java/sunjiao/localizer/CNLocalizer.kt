@@ -666,9 +666,45 @@ class CNLocalizer
         GeoPoint(31.285  ,78.885)
         GeoPoint(31.6200,79.0688)
     }
-    //乌热、然冲、拉不底地区,然冲的藏语名没找到，我宁愿用RANCHONG也不会用Silakang的
-    private val WUJE_RANCHONG_LAPTHAL = {
-        
+    //乌热、然冲、拉不底地区,然冲的藏语名没找到，我用然乌湖Rakwa Tso 和冲赛康Tromzikhang 拼起来的，有人有正确的名称欢迎告知。
+    private val WUJE_RAKTROM_LAPTHAL = {
+        GeoPoint(30.59   , 80.21	)
+        GeoPoint(30.59   , 80.195   )
+        GeoPoint(30.575  , 80.175   )
+        GeoPoint(30.575  , 80.15    )
+        GeoPoint(30.56   , 80.14    )
+        GeoPoint(30.56   , 80.125   )
+        GeoPoint(30.57   , 80.085   )
+        GeoPoint(30.595  , 80.075   )
+        GeoPoint(30.595  , 80.05    )
+        GeoPoint(30.61   , 80.04    )
+        GeoPoint(30.61   , 80.03    )
+        GeoPoint(30.625  , 80.035   )
+        GeoPoint(30.64   , 80.03    )
+        GeoPoint(30.645  , 80.015   )
+        GeoPoint(30.665  , 80.015   )
+        GeoPoint(30.69   , 79.985   )
+        GeoPoint(30.75   , 79.985   )
+        GeoPoint(30.77   , 79.95    )
+        GeoPoint(30.775  , 79.96    )
+        GeoPoint(30.79   , 79.94    )
+        GeoPoint(30.8    , 79.895   )
+        GeoPoint(30.815  , 79.89    )
+        GeoPoint(30.82   , 79.91    )
+        GeoPoint(30.84   , 79.91    )
+        GeoPoint(30.845  , 79.89    )
+        GeoPoint(30.86   , 79.89    )
+        GeoPoint(30.865  , 79.875   )
+        GeoPoint(30.85   , 79.825   )
+        GeoPoint(30.885  , 79.8	)
+        GeoPoint(30.9    , 79.8	)
+        GeoPoint(30.91   , 79.78    )
+        GeoPoint(30.945  , 79.76    )
+        GeoPoint(30.94   , 79.735   )
+        GeoPoint(30.96   , 79.7	)
+        GeoPoint(30.97   , 79.7	)
+        GeoPoint(31.0682,79.7473)
+        GeoPoint(30.7831,80.3181)
     }
     fun getLocalizedAddress(){
 
