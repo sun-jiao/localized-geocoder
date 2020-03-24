@@ -11,6 +11,11 @@ import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONObject
 
+/**
+ *
+ * @author Sun Jiao
+ *
+ */
 
 class Nominatim//according to Nominatim ToS, user agent is necessary
     (
@@ -71,7 +76,7 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
             json.getString("state_district"),
             json.getString("state"),
             json.getString("country"),
-            json.getString("country_code"))
+            json.getString("country_code"), latitude, longitude)
         } else
             return null
     }

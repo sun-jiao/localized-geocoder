@@ -2,8 +2,13 @@ package sunjiao.localizer
 
 import org.osmdroid.util.GeoPoint
 
-//2.pnpoly算法，testPoint点平行y轴（或x轴）的，以testPoint点为原点的射线，与多边形的交点数量，交点次数，奇数为真，偶数为假
-//true：in the polygon，false：out of the polygon
+/**
+ *
+ * @author Sun Jiao
+ * we use pnpoly to determine if the testPoint is in the polygon.
+ * true：in the polygon，false：out of the polygon
+ *
+ */
 
 class PnPoly(area: Array<GeoPoint>) {
     val polygon = area

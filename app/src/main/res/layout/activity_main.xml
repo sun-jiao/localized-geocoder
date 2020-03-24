@@ -49,6 +49,23 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/result"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="16dp"
+        android:text="@string/about_app"
+        android:id="@+id/about_app"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_github_mark"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_gravity="bottom"
+        android:id="@+id/github"/>
 
     </LinearLayout>

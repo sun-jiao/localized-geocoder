@@ -2,6 +2,13 @@ package sunjiao.localizer
 
 import org.osmdroid.util.GeoPoint
 import sunjiao.nominatim.Address
+
+/**
+ *
+ * @author Sun Jiao
+ *
+ */
+
 //原始数据中：
 //building
 //house_number
