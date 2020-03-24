@@ -34,7 +34,8 @@ class Address(
     @NonNull   val  country_code: String,
 
     @NonNull   val  latitude :  Float,
-    @NonNull   val  longitude : Float
+    @NonNull   val  longitude : Float,
+    @NonNull   val  display_name : String
 ) {
 
 }

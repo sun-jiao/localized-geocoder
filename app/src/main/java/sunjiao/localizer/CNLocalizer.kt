@@ -6,7 +6,7 @@ import sunjiao.nominatim.Address
 /**
  *
  * @author sun-jiao (孙娇）
- *  all polygons from OSM, and simplified with the polygon tool: http://polygons.openstreetmap.fr/
+ *  all polygons from OSM (except 九段线), and simplified with the polygon tool: http://polygons.openstreetmap.fr/
  *
  */
 
@@ -998,13 +998,19 @@ class CNLocalizer
         GeoPoint(27.522, 88.975)
         GeoPoint(27.526, 88.975)
     }
+    //九段线
+    private val
 
     fun getLocalizedAddress(): String{
-        if (address.country_code == "in"){
+        //taiwan bhutan india.
+        if (address.country_code == "tw"){
+            if (address.state == "福建省")
 
-        } else{
+        } else if (address.country_code == "in"){
+
+        } else if (address.country_code == "bt"){
 
         }
-        return ""
+
     }
 }

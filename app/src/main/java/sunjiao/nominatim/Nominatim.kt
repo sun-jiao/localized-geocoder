@@ -44,6 +44,7 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
             val jsonObject : JSONObject = JSONObject(response.body!!.string())
             if (jsonObject.isNull("error")){
                 addressObject = JSONObject(jsonObject.getString("address"))
+                addressObject.put("display_name",jsonObject.getString("display_name"))
                 return addressObject
             } else
                 return null
@@ -76,7 +77,9 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
             json.getString("state_district"),
             json.getString("state"),
             json.getString("country"),
-            json.getString("country_code"), latitude, longitude)
+            json.getString("country_code"),
+                latitude, longitude,
+            json.getString("display_name"))
         } else
             return null
     }
