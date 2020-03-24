@@ -10,8 +10,7 @@ import org.osmdroid.util.GeoPoint
  *
  */
 
-class PnPoly(area: Array<GeoPoint>) {
-    val polygon = area
+class PnPoly(val polygon: Array<GeoPoint>) {
     fun isIn ( testPoint : GeoPoint ) : Boolean {
         var z = false
         var j = polygon.size - 1

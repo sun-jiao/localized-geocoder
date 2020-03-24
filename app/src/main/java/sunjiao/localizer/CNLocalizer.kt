@@ -999,18 +999,46 @@ class CNLocalizer
         GeoPoint(27.526, 88.975)
     }
     //九段线
-    private val
+    private val JIU_DUAN_XIAN = {
+        GeoPoint(16.222, 109.307)
+        GeoPoint(15.154, 109.856)
+        GeoPoint(12.209, 110.330)
+        GeoPoint(11.200, 110.433)
+        GeoPoint(7.0093, 108.585)
+        GeoPoint(5.9395, 108.662)
+        GeoPoint(3.3445, 112.144)
+        GeoPoint(3.7189, 113.029)
+        GeoPoint(7.1308, 115.721)
+        GeoPoint(7.9639, 116.424)
+        GeoPoint(10.869, 118.720)
+        GeoPoint(11.946, 119.160)
+        GeoPoint(14.805, 119.237)
+        GeoPoint(15.975, 119.237)
+        GeoPoint(17.987, 119.649)
+        GeoPoint(18.956, 120.182)
+        GeoPoint(20.801, 121.353)
+        GeoPoint(21.667, 122.090)
+        GeoPoint(23.440, 122.683)
+        GeoPoint(24.609, 122.985)
+    }
 
     fun getLocalizedAddress(): String{
         //taiwan bhutan india.
-        if (address.country_code == "tw"){
-            if (address.state == "福建省")
+        val geoPoint = GeoPoint(address.latitude.toDouble(), address.longitude.toDouble())
+        if (address.ranks.getString("country_code") == "tw"){
+            if (Rectangle(122.380,117.046,21.409, 26.543).isIn(geoPoint)){  //in taiwan or fujian.
+                if (address.ranks.getString("state") == "福建省" || address.ranks.getString("state") == "臺灣省" || address.ranks.getString("state") == "台灣省" ||address.ranks.getString("state") == "台湾省" )
+                    return address.display_name.split(address.ranks.getString("postcode"))[1] + "中国"
+                else
+                    return address.display_name.split(address.ranks.getString("postcode"))[1] + "台湾省, 中国"
+            } else
+                return "三沙市, 海南省, 中国"
+        } else if (address.ranks.getString("country_code") == "in"){
 
-        } else if (address.country_code == "in"){
-
-        } else if (address.country_code == "bt"){
-
+        } else if (address.ranks.getString("country_code") == "bt"){
+            
+        } else if (Rectangle(124.6270, 123.2129,25.5882,25.9972).isIn(geoPoint)) {
+            return "钓鱼岛列岛, 大溪里, 头城镇, 宜兰县, 台湾省, 中国"
         }
-
     }
 }
