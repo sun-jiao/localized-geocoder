@@ -13,7 +13,7 @@ import org.json.JSONObject
 
 /**
  *
- * @author Sun Jiao
+ * @author sun-jiao (孙娇）
  *
  */
 

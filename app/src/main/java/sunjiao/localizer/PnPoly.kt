@@ -4,7 +4,7 @@ import org.osmdroid.util.GeoPoint
 
 /**
  *
- * @author Sun Jiao
+ * @author sun-jiao (孙娇）
  * we use pnpoly to determine if the testPoint is in the polygon.
  * true：in the polygon，false：out of the polygon
  *

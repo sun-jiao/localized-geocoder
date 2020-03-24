@@ -8,6 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import sunjiao.nominatim.Nominatim
 
+/**
+ *
+ * @author sun-jiao (孙娇）
+ *
+ */
 
 class MainActivity : AppCompatActivity() {
     var useragent : String = ""
