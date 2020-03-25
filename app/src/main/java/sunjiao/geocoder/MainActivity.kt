@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.webkit.WebSettings
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import sunjiao.localizer.CNLocalizer
 import sunjiao.nominatim.Nominatim
 
 /**
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     fun geoCode(){
         val nominatim : Nominatim = Nominatim(latitude_text.text.toString().toFloat(),longitude_text.text.toString().toFloat(),"zh-cn", useragent)
         val address = nominatim.getAddress()
+        if (address != null)
+            result.text = CNLocalizer(address).getLocalizedAddress()
 
     }
 }
