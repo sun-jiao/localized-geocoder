@@ -1038,14 +1038,30 @@ class CNLocalizer
             } else //南沙
                 return southChinaSea(true)
         } else if (address.ranks.getString("country_code") == "in"){
-            if (address.longitude > 91.400)
-                if (PnPoly(SOUTH_TIBET).isIn(geoPoint)){ //need more work
+            if ((address.longitude > 91.400) && (PnPoly(SOUTH_TIBET).isIn(geoPoint))){ //need more work
                     if (address.display_name.contains("达旺") || address.display_name.contains("達旺") || address.display_name.contains("Tawang"))
                         return "达旺, 错那县, 山南市, 西藏自治区, 中国"
                     else
                         return "西藏自治区, 中国"
-                } else 
-
+            } else if (Rectangle(79.4816, 79.2044, 32.5072, 32.9890).isIn(geoPoint) && PnPoly(WEST_PARIGAS).isIn(geoPoint))
+                return "巴里加斯, 扎西岗乡, 噶尔县, 阿里地区, 西藏自治区, 中国"
+            else if (Rectangle(78.7713,78.5550,32.5732,32.7281).isIn(geoPoint)){
+                if (PnPoly(CHUMAR).isIn(geoPoint))
+                    return "楚木惹地区, 楚鲁松杰乡, 札达县, 阿里地区, 西藏自治区, 中国"
+                else if (PnPoly(SERUURRI).isIn(geoPoint))
+                    return "斯诺乌山地区, 楚鲁松杰乡, 札达县, 阿里地区, 西藏自治区, 中国"
+                else
+                    return address.display_name
+            } else if (Rectangle(78.7997, 78.4040, 31.9212, 32.2990).isIn(geoPoint) && PnPoly(RGYUD_BA_KAURIK).isIn(geoPoint))
+                return "巨哇、曲惹地区, 楚鲁松杰乡, 札达县, 阿里地区, 西藏自治区, 中国"
+            else if (Rectangle(78.7780, 78.6267, 31.7670, 31.9016).isIn(geoPoint) && PnPoly(SHIPKI_LA).isIn(geoPoint))
+                return "什布奇山口地区, 什布奇村, 底雅乡, 札达县, 阿里地区, 西藏自治区, 中国"
+            else if (Rectangle(79.4376, 78.8660, 30.9346, 31.4772).isIn(geoPoint) && PnPoly(SANG_TSHONG_SA_PULAM_SUMDA).isIn(geoPoint))
+                return "桑、葱莎、波林三多地区, 札达县, 阿里地区, 西藏自治区, 中国"
+            else if (Rectangle(80.3107, 79.6595,30.5100,31.0574).isIn(geoPoint) && PnPoly(WUJE_RAKTROM_LAPTHAL).isIn(geoPoint))
+                return "乌热、然冲、拉不底地区, 达巴乡, 札达县, 阿里地区, 西藏自治区, 中国"
+            else
+                return address.display_name
         } else if (address.ranks.getString("country_code") == "bt"){
             if (Rectangle(89.1893,88.7499,27.2046,27.6271).isIn(geoPoint)){
                 if (PnPoly(KIWU).isIn(geoPoint))
@@ -1060,11 +1076,8 @@ class CNLocalizer
                     return localityNameGet("下亚东", "洞朗地区, 下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
                 else
                     return address.display_name
-            } else if (Rectangle(91.3442,90.7698,27.7934,28.1026).isIn(geoPoint)){
-                if (PnPoly(BAIYU_EAST).isIn(geoPoint) || PnPoly(BAIYU_WEST).isIn(geoPoint))
+            } else if (Rectangle(91.3442,90.7698,27.7934,28.1026).isIn(geoPoint) && (PnPoly(BAIYU_EAST).isIn(geoPoint) || PnPoly(BAIYU_WEST).isIn(geoPoint))){
                     return "白玉地区, 洛扎县, 山南市, 西藏自治区, 中国"
-                else
-                    return address.display_name
             } else
                 return address.display_name
         } else if ( address.ranks.getString("country_code") == "ph" ||
@@ -1076,7 +1089,8 @@ class CNLocalizer
                 return address.display_name
         } else if (Rectangle(124.6270, 123.2129,25.5882,25.9972).isIn(geoPoint)) {
             return "钓鱼岛列岛, 大溪里, 头城镇, 宜兰县, 台湾省, 中国"
-        }
+        } else
+            return address.display_name
     }
 
     fun southChinaSea(bool : Boolean) : String{
