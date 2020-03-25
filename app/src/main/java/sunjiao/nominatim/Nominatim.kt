@@ -1,16 +1,14 @@
 package sunjiao.nominatim
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.os.Build
 import android.util.Log
-import android.webkit.WebSettings
 import androidx.annotation.NonNull
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import okio.IOException
 import org.json.JSONException
 import org.json.JSONObject
+import java.net.SocketTimeoutException
+import javax.net.ssl.SSLException
+
 
 /**
  *
@@ -25,8 +23,10 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
     @NonNull private val language: String,
     @NonNull private val useragent: String)
 {
-    private val TAG =  "Nominatim"
-    private fun getJSON() : JSONObject? {
+    val TAG =  "Nominatim"
+
+    @Throws(KotlinNullPointerException::class ,  IllegalStateException::class , RuntimeException::class, SSLException::class)
+    private fun getJSON() : String? {
         val client : OkHttpClient = OkHttpClient()
         val builder = "https://nominatim.openstreetmap.org/reverse?".toHttpUrlOrNull()?.newBuilder()
         builder?.addQueryParameter("format", "json")
@@ -41,38 +41,40 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
             .addHeader("Referer", "https://github.com/sun-jiao/LocalizedGeocoder/")
             .build()
         val call: Call = client.newCall(request)
-        var jsonObject : JSONObject? = JSONObject()
-        var response0: Response? = null
-        call.enqueue(object : Callback {
-
-            override fun onFailure(call: Call, e: java.io.IOException) {
-                jsonObject = null
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                try {
-                    response0 = response
-                     jsonObject  = JSONObject(response.body!!.string())
-                } catch (e: JSONException) {}
+        var response: Response? = null
+        val thread : Thread = Thread(Runnable {
+            try {
+                response = call.execute()
+            } catch (e : SocketTimeoutException){
+                e.printStackTrace()
             }
         })
+        thread.start()
+        thread.join()
         Log.i(TAG, request.toString())
-        Log.i(TAG, response0.toString())
-        if(jsonObject != null) {
-            if (jsonObject!!.isNull("error")){
-                return jsonObject
-            } else
-                return null
-        } else
+        if (response == null)
             return null
-
+        else {
+            Log.i(TAG, response.toString())
+            if (response!!.body == null)
+                return null
+            else{
+                val str = response?.body!!.string()
+                Log.i(TAG, str)
+                return str
+            }
+        }
     }
 
     fun getAddress() : Address? {
-        val json : JSONObject? = getJSON()
-        Log.i(TAG, json.toString())
-        if (json != null && !json.isNull("address") && !json.isNull("display_name") ){
-            return Address( json.getJSONObject("address"), latitude, longitude, json.getString("display_name"))
+        val str = getJSON()
+        if (str != null){
+            val json : JSONObject? = JSONObject(str)
+            Log.i(TAG, json.toString())
+            if (json != null && !json.isNull("address") && !json.isNull("display_name") ){
+                return Address( json.getJSONObject("address"), latitude, longitude, json.getString("display_name"))
+            } else
+                return null
         } else
             return null
     }

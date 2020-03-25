@@ -1,5 +1,6 @@
 package sunjiao.localizer
 
+import android.util.Log
 import org.osmdroid.util.GeoPoint
 import sunjiao.nominatim.Address
 import java.util.regex.Matcher
@@ -287,7 +288,7 @@ class CNLocalizer
         GeoPoint(31.285  ,78.885),
         GeoPoint(31.6200,79.0688)
     )
-    //乌热、然冲、拉不底地区 2713484 ,然冲的藏语名没找到，我用然乌湖Rakwa Tso 和冲赛康Tromzikhang 拼起来的，有人有正确的名称欢迎告知。
+    //乌热、然冲、拉不底地区 2713484 ,然冲的藏语名没找到，我用然乌湖 Rakwa Tso 和冲赛康 Tromzikhang 拼起来的，有人有正确的名称欢迎告知。
     private val WUJE_RAKTROM_LAPTHAL  : Array<GeoPoint> = arrayOf(
         GeoPoint(30.59   , 80.21	),
         GeoPoint(30.59   , 80.195   ),
@@ -1026,8 +1027,9 @@ class CNLocalizer
 
     fun getLocalizedAddress(): String{
         val geoPoint = GeoPoint(address.latitude.toDouble(), address.longitude.toDouble())
-
-        if (address.ranks.getString("country_code") == "tw"){
+        if (address.ranks.getString("country_code") == "cn"){
+            return address.display_name
+        } else if (address.ranks.getString("country_code") == "tw"){
             if (Rectangle(122.380,117.046,21.409, 26.543).isIn(geoPoint)){  //in taiwan or fujian.
                 if (address.ranks.getString("state") == "福建省" || address.ranks.getString("state") == "臺灣省" || address.ranks.getString("state") == "台灣省" ||address.ranks.getString("state") == "台湾省" )
                     return address.display_name.split(address.ranks.getString("postcode"))[0] + "中国"
@@ -1071,14 +1073,14 @@ class CNLocalizer
                 else if (PnPoly(LULIN).isIn(geoPoint))
                     return localityNameGet("鲁林", "鲁林地区, 仁青岗村, 下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
                 else if (PnPoly(DOKLAM).isIn(geoPoint))
-                    return localityNameGet("洞朗", "洞朗地区, 下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
+                    return localityNameGet("下亚东乡", "洞朗地区, 下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
                 else if (Rectangle(89.0298,88.7527,27.2886,27.5363).isIn(geoPoint))
-                    return localityNameGet("下亚东", "洞朗地区, 下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
+                    return localityNameGet("下亚东", "下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
                 else
                     return address.display_name
-            } else if (Rectangle(91.3442,90.7698,27.7934,28.1026).isIn(geoPoint) && (PnPoly(BAIYU_EAST).isIn(geoPoint) || PnPoly(BAIYU_WEST).isIn(geoPoint))){
+            } else if (Rectangle(91.3442,90.7698,27.7934,28.1026).isIn(geoPoint) && (PnPoly(BAIYU_EAST).isIn(geoPoint) || PnPoly(BAIYU_WEST).isIn(geoPoint)))
                     return "白玉地区, 洛扎县, 山南市, 西藏自治区, 中国"
-            } else
+             else
                 return address.display_name
         } else if ( address.ranks.getString("country_code") == "ph" ||
                     address.ranks.getString("country_code") == "vn" ||
@@ -1087,18 +1089,18 @@ class CNLocalizer
                 return southChinaSea(true)
             else
                 return address.display_name
-        } else if (Rectangle(124.6270, 123.2129,25.5882,25.9972).isIn(geoPoint)) {
+        } else if (Rectangle(124.6270, 123.2129,25.5882,25.9972).isIn(geoPoint))
             return "钓鱼岛列岛, 大溪里, 头城镇, 宜兰县, 台湾省, 中国"
-        } else
+        else
             return address.display_name
     }
 
     fun southChinaSea(bool : Boolean) : String{
         var string : String
             if (bool)
-                string = "三沙市, 海南省, 中国"
+                string = "三沙市, 海南省, 中国"  //true 西中南沙
             else
-                string = "碣石镇, 陆丰市, 汕尾市, 广东省, 中国"
+                string = "东沙群岛, 碣石镇, 陆丰市, 汕尾市, 广东省, 中国"  // false 东沙
         if(address.display_name.contains("岛"))
             return address.display_name.split("岛")[0] +  "岛, " + string
         else if (address.display_name.contains("島"))
@@ -1109,15 +1111,19 @@ class CNLocalizer
             return address.display_name.split("洲,")[0] + "洲, " + string
         else if (address.display_name.contains("滩,"))
             return address.display_name.split("滩,")[0] + "滩, " + string
+        else if (address.display_name.contains("中興里") && address.display_name.split(",")[0] != "中興里")
+            return address.display_name.split(",")[0] + ", " + string
         else
             return string
     }
 
     fun localityNameGet(smallPlaceName : String, administration: String, original : String) : String{
         if (address.display_name.contains(smallPlaceName)){
-            if (address.display_name.indexOf(smallPlaceName) != 0)
+            if (address.display_name.indexOf(smallPlaceName) != 0) //if contains the disputed area name
                 return address.display_name.split(smallPlaceName)[0] + administration
-            else{
+            else{ //not contains the disputed area name
+
+                //if contains chinese character
                 val strList = address.display_name.split(",")
                 val regEx = "[\\u4e00-\\u9fa5]"
                 val p = Pattern.compile(regEx)
@@ -1138,6 +1144,8 @@ class CNLocalizer
                         break
                     }
                 }
+
+                //把第一个完全没有汉字的字段的前面的部分拉出来。
                 if (index == 0)
                     return administration
                 else if (index == (strList.size -1))
