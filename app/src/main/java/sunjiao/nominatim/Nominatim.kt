@@ -37,7 +37,7 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
         builder?.addQueryParameter("accept-language", language)
         val request = Request.Builder()
             .url(builder.toString())
-            .addHeader("User-Agent", "SunjiaoLocalizedGeocoder/1.0.0 (Android 10; Google Pixel 3)")
+            .addHeader("User-Agent", useragent)
             .addHeader("Referer", "https://github.com/sun-jiao/LocalizedGeocoder/")
             .build()
         val call: Call = client.newCall(request)
