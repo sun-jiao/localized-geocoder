@@ -1,5 +1,6 @@
 package sunjiao.localizer
 
+import android.util.Log
 import org.osmdroid.util.GeoPoint
 
 /**
@@ -23,6 +24,7 @@ class PnPoly(val polygon: Array<GeoPoint>) {
                 z = !z
             j = i
         }
+        Log.i("pnpoly", "pnpoly")
         return z
     }
 }
