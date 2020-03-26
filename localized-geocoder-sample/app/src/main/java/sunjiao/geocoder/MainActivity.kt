@@ -8,8 +8,8 @@ import android.webkit.WebSettings
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import sunjiao.localizer.CNLocalizer
-import sunjiao.nominatim.Nominatim
+import org.sunjiao.localizer.CNLocalizer
+import org.sunjiao.nominatim.Nominatim
 
 /**
  *
