@@ -1,4 +1,4 @@
-package sunjiao.nominatim
+package org.sunjiao.nominatim
 
 import android.util.Log
 import androidx.annotation.NonNull
@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONObject
+import org.sunjiao.nominatim.Address
 import java.net.SocketTimeoutException
 import javax.net.ssl.SSLException
 

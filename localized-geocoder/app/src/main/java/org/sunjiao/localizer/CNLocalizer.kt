@@ -1,7 +1,7 @@
-package sunjiao.localizer
+package org.sunjiao.localizer
 
 import org.osmdroid.util.GeoPoint
-import sunjiao.nominatim.Address
+import org.sunjiao.nominatim.Address
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
