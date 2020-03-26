@@ -1,6 +1,5 @@
 package sunjiao.localizer
 
-import android.util.Log
 import org.osmdroid.util.GeoPoint
 import sunjiao.nominatim.Address
 import java.util.regex.Matcher
@@ -329,7 +328,7 @@ class CNLocalizer
         GeoPoint(30.7831,80.3181)
     )
     //巨哇、曲惹地区 2713483
-    private val RGYUD_BA_KAURIK  : Array<GeoPoint> = arrayOf(
+    private val GUE_KAURIK  : Array<GeoPoint> = arrayOf(
         GeoPoint(31.9649,78.8227),
         GeoPoint(31.946,       78.766	),
         GeoPoint(31.95,       78.744	),
@@ -1054,7 +1053,7 @@ class CNLocalizer
                     return "斯诺乌山地区, 楚鲁松杰乡, 札达县, 阿里地区, 西藏自治区, 中国"
                 else
                     return address.display_name
-            } else if (Rectangle(78.7997, 78.4040, 31.9212, 32.2990).isIn(geoPoint) && PnPoly(RGYUD_BA_KAURIK).isIn(geoPoint))
+            } else if (Rectangle(78.7997, 78.4040, 31.9212, 32.2990).isIn(geoPoint) && PnPoly(GUE_KAURIK).isIn(geoPoint))
                 return "巨哇、曲惹地区, 楚鲁松杰乡, 札达县, 阿里地区, 西藏自治区, 中国"
             else if (Rectangle(78.7780, 78.6267, 31.7670, 31.9016).isIn(geoPoint) && PnPoly(SHIPKI_LA).isIn(geoPoint))
                 return "什布奇山口地区, 什布奇村, 底雅乡, 札达县, 阿里地区, 西藏自治区, 中国"
@@ -1073,7 +1072,7 @@ class CNLocalizer
                 else if (PnPoly(LULIN).isIn(geoPoint))
                     return localityNameGet("鲁林", "鲁林地区, 仁青岗村, 下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
                 else if (PnPoly(DOKLAM).isIn(geoPoint))
-                    return localityNameGet("下亚东乡", "洞朗地区, 下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
+                    return localityNameGet("洞朗地区", "洞朗地区, 下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
                 else if (Rectangle(89.0298,88.7527,27.2886,27.5363).isIn(geoPoint))
                     return localityNameGet("下亚东", "下亚东乡, 亚东县, 日喀则市, 西藏自治区, 中国", "不丹")
                 else
