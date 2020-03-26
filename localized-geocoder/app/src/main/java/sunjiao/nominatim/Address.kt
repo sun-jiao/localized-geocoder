@@ -1,7 +1,6 @@
 package sunjiao.nominatim
 
 import androidx.annotation.NonNull
-import androidx.annotation.Nullable
 import org.json.JSONObject
 
 /**

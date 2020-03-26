@@ -1,3 +1,4 @@
+description = 'An Android library to provide localized Nimitim geocode result.'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'

@@ -2,9 +2,12 @@ package sunjiao.nominatim
 
 import android.util.Log
 import androidx.annotation.NonNull
-import okhttp3.*
+import androidx.annotation.Nullable
+import okhttp3.Call
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import org.json.JSONException
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import org.json.JSONObject
 import java.net.SocketTimeoutException
 import javax.net.ssl.SSLException
@@ -21,14 +24,15 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
     @NonNull private var latitude: Float,
     @NonNull private var longitude: Float,
     @NonNull private val language: String,
-    @NonNull private val useragent: String)
+    @NonNull private val useragent: String,
+    @Nullable private var baseUrl : String = "https://nominatim.openstreetmap.org/reverse?")
 {
     val TAG =  "Nominatim"
 
     @Throws(KotlinNullPointerException::class ,  IllegalStateException::class , RuntimeException::class, SSLException::class)
     private fun getJSON() : String? {
         val client : OkHttpClient = OkHttpClient()
-        val builder = "https://nominatim.openstreetmap.org/reverse?".toHttpUrlOrNull()?.newBuilder()
+        val builder = baseUrl.toHttpUrlOrNull()?.newBuilder()
         builder?.addQueryParameter("format", "json")
         builder?.addQueryParameter("lat", latitude.toString())
         builder?.addQueryParameter("lon", longitude.toString())
