@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Localized Geocoder</string>
+    <string name="app_name">Localized Geocoder Sample</string>
     <string name="geocode">Geocode</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>

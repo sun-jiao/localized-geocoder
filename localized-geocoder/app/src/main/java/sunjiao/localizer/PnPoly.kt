@@ -15,7 +15,7 @@ class PnPoly(val polygon: Array<GeoPoint>) {
     fun isIn ( testPoint : GeoPoint ) : Boolean {
         var z = false
         var j = polygon.size - 1
-        for ((i: Int, point :GeoPoint) in polygon.withIndex()){
+        for ((i: Int, _:GeoPoint) in polygon.withIndex()){
             if ( ((polygon[i].longitude >testPoint.longitude)
                         != (polygon[j].longitude >testPoint.longitude))
                 && (testPoint.latitude
