@@ -18,7 +18,23 @@ Add it in your root build.gradle at the end of repositories:
 		}
 	}
 Step 2. Add the dependency
+Add it in your app moudle build.gradle file.
 
 	dependencies {
-	        implementation 'com.github.sun-jiao:localized-geocoder:0.1.0'
+	        implementation 'com.github.sun-jiao:localized-geocoder:0.2.0'
 	}
+
+## How to get geocode result
+### kotlin
+
+	val nominatim : Nominatim = Nominatim(latitude_text.text.toString().toFloat(),longitude_text.text.toString().toFloat(),"zh-cn", useragent)
+        val address = nominatim.getAddress()
+        val str : String
+        if (address != null){
+            Log.i(nominatim.TAG, "success 1")
+           str =  CNLocalizer(address).getLocalizedAddress()
+            Log.i(nominatim.TAG , str)
+            resultText?.setText(str)
+        }
+
+### java
