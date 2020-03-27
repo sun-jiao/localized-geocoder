@@ -30,6 +30,7 @@ Add it in your app moudle build.gradle file.
 * If you want to use another geocode service, or you have deployed nominatim on your on server, you can add the **base url** of it following the **useragent** as the last parameter in string.
 * Get Address by **getAddress**, you can get the json address, the whole display address from it. If you don't want a localized result, that's all.
 * If not, you need to continue to do following me.
+* Next, you should use a localizer, its name usually is the ISO country code + "Localizer". 
 
 ### kotlin
 
@@ -37,10 +38,16 @@ Add it in your app moudle build.gradle file.
         val address = nominatim.getAddress()
         val str : String
         if (address != null){
-            Log.i(nominatim.TAG, "success 1")
            str =  CNLocalizer(address).getLocalizedAddress()
-            Log.i(nominatim.TAG , str)
-            resultText?.setText(str)
+           // the str is the final result, do anything you want with it.
         }
 
 ### java
+	
+	Nominatim nominatim = new Nominatim(latitude_text.text.toString().toFloat(),longitude_text.text.toString().toFloat(),"zh-cn", useragent, myNominatimServer /*optional*/ );
+	String address = nominatim.getAddress();
+	String str = new String;
+	if (address != null){
+           str =  (new CNLocalizer(address)).getLocalizedAddress();
+           // the str is the final result, do anything you want with it.
+        }
