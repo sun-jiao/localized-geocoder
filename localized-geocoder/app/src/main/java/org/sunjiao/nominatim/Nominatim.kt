@@ -21,14 +21,19 @@ import javax.net.ssl.SSLException
  */
 
 class Nominatim//according to Nominatim ToS, user agent is necessary
+
     (
-    @NonNull private var latitude: Float,
-    @NonNull private var longitude: Float,
+    @NonNull private val latitude: Float,
+    @NonNull private val longitude: Float,
     @NonNull private val language: String,
     @NonNull private val useragent: String,
-    @Nullable private var baseUrl : String = "https://nominatim.openstreetmap.org/reverse?")
+    @Nullable private val baseUrl : String = "https://nominatim.openstreetmap.org/reverse?")
 {
     val TAG =  "Nominatim"
+
+    constructor(latitude: Float, longitude: Float, language:String, useragent: String) : this(latitude, longitude, language, useragent, "https://nominatim.openstreetmap.org/reverse?"){
+
+    }
 
     @Throws(KotlinNullPointerException::class ,  IllegalStateException::class , RuntimeException::class, SSLException::class)
     private fun getJSON() : String? {
