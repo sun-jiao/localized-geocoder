@@ -1,10 +1,11 @@
 # LocalizedGeocoder
+<img src="https://raw.githubusercontent.com/sun-jiao/localized-geocoder/master/Screenshot_20200329-164202.png" align="left" width="30%">
+
 [![](https://jitpack.io/v/sun-jiao/localized-geocoder.svg)](https://jitpack.io/#sun-jiao/localized-geocoder)
 
 Localized Geocoder is an Android library based on Nominatim, can be used to solve the boundary disputes. <br/>
 This library is developed by *Sun Jiao*, Github username: @sun-jiao .<br/>
 Welcome to contribute for your country.<br/>
- ![image](https://raw.githubusercontent.com/sun-jiao/localized-geocoder/master/Screenshot_20200329-164202.png)
 
 # How to use
 ## How to include it
