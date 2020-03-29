@@ -9,6 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONObject
+import org.osmdroid.util.GeoPoint
 import org.sunjiao.nominatim.Address
 import java.net.SocketTimeoutException
 import javax.net.ssl.SSLException
@@ -23,17 +24,28 @@ import javax.net.ssl.SSLException
 class Nominatim//according to Nominatim ToS, user agent is necessary
 
     (
-    @NonNull private val latitude: Float,
-    @NonNull private val longitude: Float,
+    @NonNull private val latitude:  Double,
+    @NonNull private val longitude: Double,
     @NonNull private val language: String,
     @NonNull private val useragent: String,
     @Nullable private val baseUrl : String = "https://nominatim.openstreetmap.org/reverse?")
 {
     val TAG =  "Nominatim"
 
-    constructor(latitude: Float, longitude: Float, language:String, useragent: String) : this(latitude, longitude, language, useragent, "https://nominatim.openstreetmap.org/reverse?"){
+    constructor(latitude: Double, longitude: Double, language:String, useragent: String)
+            : this(latitude, longitude, language, useragent, "https://nominatim.openstreetmap.org/reverse?")
 
-    }
+    constructor(geoPoint: GeoPoint, language:String, useragent: String, baseUrl : String)
+            : this(geoPoint.latitude, geoPoint.longitude, language, useragent, baseUrl)
+
+    constructor(geoPoint: GeoPoint, language:String, useragent: String)
+            : this(geoPoint.latitude, geoPoint.longitude, language, useragent)
+
+    constructor(latitudeF: Float, longitudeF: Float, language:String, useragent: String, baseUrl : String)
+            : this(latitudeF.toDouble(), longitudeF.toDouble(), language, useragent, baseUrl)
+
+    constructor(latitudeF: Float, longitudeF: Float, language:String, useragent: String)
+            : this(latitudeF.toDouble(), longitudeF.toDouble(), language, useragent)
 
     @Throws(KotlinNullPointerException::class ,  IllegalStateException::class , RuntimeException::class, SSLException::class)
     private fun getJSON() : String? {

@@ -12,8 +12,8 @@ import org.json.JSONObject
 //you can add more parameters if useful in your country.
 class Address(
     @NonNull   val  ranks : JSONObject,
-    @NonNull   val  latitude :  Float,
-    @NonNull   val  longitude : Float,
+    @NonNull   val  latitude :  Double,
+    @NonNull   val  longitude : Double,
     @NonNull   val  display_name : String
 ) {
 
