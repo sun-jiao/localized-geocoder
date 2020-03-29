@@ -1,5 +1,5 @@
 # LocalizedGeocoder
-<img src="https://raw.githubusercontent.com/sun-jiao/localized-geocoder/master/Screenshot_20200329-164202.png" align="left" width="30%">
+<img src="https://raw.githubusercontent.com/sun-jiao/localized-geocoder/master/Screenshot_20200329-164202.png" align="right" width="30%">
 
 [![](https://jitpack.io/v/sun-jiao/localized-geocoder.svg)](https://jitpack.io/#sun-jiao/localized-geocoder)
 
