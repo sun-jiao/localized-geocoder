@@ -1,15 +1,19 @@
 package sunjiao.geocoder
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.util.Log
-import android.webkit.WebSettings
 import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.sunjiao.localizer.CNLocalizer
 import org.sunjiao.nominatim.Nominatim
+import java.lang.ref.WeakReference
 
 /**
  *
@@ -44,15 +48,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun geoCode(){
-        val nominatim : Nominatim = Nominatim(latitude_text.text.toString().toFloat(),longitude_text.text.toString().toFloat(),"zh-cn", useragent)
-        val address = nominatim.getAddress()
-        val str : String
-        if (address != null){
-            Log.i(nominatim.TAG, "success 1")
-           str =  CNLocalizer(address).getLocalizedAddress()
-            Log.i(nominatim.TAG , str)
-            resultText?.setText(str)
-        }
+        val handler = MyHandler(this)
+        val thread = Thread(Runnable {
+            val nominatim : Nominatim = Nominatim(latitude_text.text.toString().toDouble(),longitude_text.text.toString().toDouble(),"zh-cn", useragent)
+            val address = nominatim.getAddress()
+            val str : String
+            if (address != null){
+                Log.i(nominatim.TAG, "success 1")
+                str =  CNLocalizer(address).getLocalizedAddress()
+                Log.i(nominatim.TAG , str)
+                val message = handler.obtainMessage()
+                val anyArray : Array<Any?> = arrayOf(str, resultText)
+                message.obj = anyArray
+                message.what = 0
+                handler.sendMessage(message)
+            }
+        }).start()
+    }
 
+    private class MyHandler(activity: MainActivity) : Handler() {
+        private val mActivity: WeakReference<MainActivity> = WeakReference(activity)
+
+        override fun handleMessage(msg: Message) {
+            if (mActivity.get() == null) {
+                return
+            }
+            val activity = mActivity.get()
+            when (msg.what) {
+                0-> {
+                    val array : Array<Any?> = msg.obj as Array<Any?>
+                    val textView = array[1] as TextView
+                    val string = array[0] as String
+                    textView.setText(string)
+                }
+                else -> {
+                }
+            }
+        }
     }
 }
