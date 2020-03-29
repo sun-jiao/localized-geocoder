@@ -36,7 +36,8 @@ Add it in your app moudle build.gradle file.
 
 ### kotlin
 
-	val nominatim : Nominatim = Nominatim(latitude_text.text.toString().toFloat(),longitude_text.text.toString().toFloat(),"zh-cn", useragent, myNominatimServer /*optional*/ ) 
+	val nominatim : Nominatim = Nominatim(latitude, longitude /*Double or Float*/, language, useragent, myNominatimServer /*optional*/ ) 
+	/*or use the GeoPoint as parameter*/ val nominatim : Nominatim = Nominatim(geoPoint, language, useragent, myNominatimServer) 
         val address = nominatim.getAddress()
         val str : String
         if (address != null){
@@ -46,7 +47,8 @@ Add it in your app moudle build.gradle file.
 
 ### java
 	
-	Nominatim nominatim = new Nominatim(latitude_text.text.toString().toFloat(),longitude_text.text.toString().toFloat(),"zh-cn", useragent, myNominatimServer /*optional*/ );
+	Nominatim nominatim = new Nominatim(latitude,longitude/*Double or Float*/, language, useragent, myNominatimServer /*optional*/ );
+	/*or use the GeoPoint as parameter*/ Nominatim nominatim = new Nominatim(geoPoint, language, useragent, myNominatimServer);
 	String address = nominatim.getAddress();
 	String str = new String;
 	if (address != null){
