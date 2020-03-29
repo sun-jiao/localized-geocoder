@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="country_area">
+        <item>China (CN)</item>
+    </string-array>
+
+    <string-array name="language">
+        <item>Chinese-Simplified (zh-cn)</item>
+    </string-array>
+</resources>

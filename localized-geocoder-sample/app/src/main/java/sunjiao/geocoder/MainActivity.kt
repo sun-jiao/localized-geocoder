@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     fun geoCode(){
         val handler = MyHandler(this)
+
         val thread = Thread(Runnable {
             val nominatim : Nominatim = Nominatim(latitude_text.text.toString().toDouble(),longitude_text.text.toString().toDouble(),"zh-cn", useragent)
             val address = nominatim.getAddress()

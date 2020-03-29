@@ -4,4 +4,6 @@
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="about_app">This is a sample app for Localized Geocoder. \nLocalized Geocoder is an Android library based on Nominatim, can be used to solve the disputed area. \nLocalized Geocoder is developed by Sun Jiao (Chinese: 孙娇), Github username: @sun-jiao .\nWelcome to contribute for your country.</string>
+    <string name="country_area">Country / Area</string>
+    <string name="language">Language</string>
 </resources>
