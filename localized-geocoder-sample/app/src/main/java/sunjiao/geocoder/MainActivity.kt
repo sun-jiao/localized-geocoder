@@ -11,8 +11,8 @@ import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import org.sunjiao.localizer.CNLocalizer
-import org.sunjiao.nominatim.Nominatim
+import moe.sunjiao.localizer.CNLocalizer
+import moe.sunjiao.nominatim.Nominatim
 import java.lang.ref.WeakReference
 
 /**
