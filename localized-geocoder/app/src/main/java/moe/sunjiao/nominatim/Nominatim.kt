@@ -1,4 +1,4 @@
-package org.sunjiao.nominatim
+package moe.sunjiao.nominatim
 
 import android.util.Log
 import androidx.annotation.NonNull
@@ -10,7 +10,7 @@ import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONObject
 import org.osmdroid.util.GeoPoint
-import org.sunjiao.nominatim.Address
+import moe.sunjiao.nominatim.Address
 import java.net.SocketTimeoutException
 import javax.net.ssl.SSLException
 
@@ -94,7 +94,12 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
             val json : JSONObject? = JSONObject(str)
             Log.i(TAG, json.toString())
             if (json != null && !json.isNull("address") && !json.isNull("display_name") ){
-                return Address( json.getJSONObject("address"), latitude, longitude, json.getString("display_name"))
+                return Address(
+                    json.getJSONObject("address"),
+                    latitude,
+                    longitude,
+                    json.getString("display_name")
+                )
             } else
                 return null
         } else

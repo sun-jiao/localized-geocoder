@@ -1,4 +1,4 @@
-package org.sunjiao.localizer
+package moe.sunjiao.localizer
 
 import android.util.Log
 import org.osmdroid.util.GeoPoint

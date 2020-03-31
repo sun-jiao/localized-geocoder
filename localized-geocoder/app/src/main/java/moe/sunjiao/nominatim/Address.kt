@@ -1,4 +1,4 @@
-package org.sunjiao.nominatim
+package moe.sunjiao.nominatim
 
 import androidx.annotation.NonNull
 import org.json.JSONObject
