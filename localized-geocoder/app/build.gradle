@@ -2,6 +2,8 @@ description = 'An Android library to provide localized Nimitim geocode result.'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'maven'
+group ='com.github.sun-jiao'
 
 //@author sun-jiao (孙娇）
 
@@ -12,8 +14,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 6
-        versionName "0.6.0"
+        versionCode 7
+        versionName "0.7.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
