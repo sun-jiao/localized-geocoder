@@ -47,7 +47,6 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
     constructor(latitudeF: Float, longitudeF: Float, language:String, useragent: String)
             : this(latitudeF.toDouble(), longitudeF.toDouble(), language, useragent)
 
-    @Throws(KotlinNullPointerException::class ,  IllegalStateException::class , RuntimeException::class, SSLException::class)
     private fun getJSON() : String? {
         val client : OkHttpClient = OkHttpClient()
         val builder = baseUrl.toHttpUrlOrNull()?.newBuilder()
@@ -67,23 +66,23 @@ class Nominatim//according to Nominatim ToS, user agent is necessary
         val thread : Thread = Thread(Runnable {
             try {
                 response = call.execute()
-            } catch (e : SocketTimeoutException){
+            } catch (e : Exception){
                 e.printStackTrace()
             }
         })
         thread.start()
         thread.join()
         Log.i(TAG, request.toString())
-        if (response == null)
-            return null
+        return if (response == null)
+            null
         else {
             Log.i(TAG, response.toString())
             if (response!!.body == null)
-                return null
+                null
             else{
                 val str = response?.body!!.string()
                 Log.i(TAG, str)
-                return str
+                str
             }
         }
     }

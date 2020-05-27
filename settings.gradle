@@ -1,2 +1,3 @@
 rootProject.name='Localized Geocoder'
-include ':app'
+include ':sample'
+include ':geocoder'
