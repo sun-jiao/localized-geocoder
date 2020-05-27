@@ -23,7 +23,7 @@ Step 2. Add the dependency
 Add it in your app moudle build.gradle file.
 
 	dependencies {
-	        implementation 'com.github.sun-jiao:localized-geocoder:0.8.0'
+	        implementation 'moe.sunjiao:localized-geocoder:<VERSION>'
 	}
 
 ## How to get geocode result
